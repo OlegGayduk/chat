@@ -1,0 +1,42 @@
+<!doctype html>
+<head>
+    <meta charset='utf-8'>
+    <title>Сообщения</title>
+    <link rel='stylesheet' type='text/css' href='css/chat.css'/>
+    <script src="js/jquery.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script src='js/nanoscroll.js'></script>
+</head>
+<body>
+
+<div class="container">
+    <div id='msgs-history-col-wrap' class='nano'>
+        <div class='overthrow nano-content' onscroll=''>
+            <div class="msgs-history-selected"></div>
+        </div>
+    </div>
+
+    <form class='msgs-send-form-wrap' method='post' onsubmit="return sendMsg(event);">
+        <div class='msgs-history-typing-wrap'>
+            <span class='msgs-history-typing-wrap-text'></span></div>
+        <textarea class='msgs-send-textarea' contenteditable='true' onkeydown='sendMsgFromKey(event)' oninput='typing(this)' name='text'></textarea>
+        <span type='submit' class='msgs-history-send-btn' onclick='sendMsg(event)'>ОТПРАВИТЬ</span>
+    </form>  
+
+    <div class="bottom-send-panel">
+        <div class='send-media'>
+            <form name="uploadFile" id='upload' method='post' enctype='multipart/form-data'>
+                <input name="filename" class="im_attach_input" size="28" multiple="multiple" title="Send file" type="file" onchange='messFileUploadActs.fileUpload(this,uploadFile);'>
+            </form>
+        </div>
+        <div class="send-photos">
+            <form name="uploadMedia" id='upload' method='post' enctype='multipart/form-data'>
+                <input name="filename" class="im_media_attach_input" size="28" multiple="multiple" accept="image/*, video/*, audio/*" title="Send media" type="file" onchange='messFileUploadActs.fileUpload(this,uploadMedia);'>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src='js/client.js'></script>
+</body>
+</html>
